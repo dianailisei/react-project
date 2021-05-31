@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ModalA from "./components/ModalA";
 import ModalB from "./components/ModalB";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Router>
@@ -23,12 +23,12 @@ function App() {
         </Container>
         <Switch>
           <Route path="/" exact />
-          <Route path="/modalA" exact component={ModalA} />
-          <Route path="/modalB" exact component={ModalB} />
+          <Route path="/modalA" component={ModalA} />
+          <Route path="/modalB" component={ModalB} />
         </Switch>
       </Router>
     </div>
   );
-}
+};
 
 export default App;
