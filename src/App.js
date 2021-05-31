@@ -1,0 +1,34 @@
+import "./App.css";
+import { Container, Button, Row, Col } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ModalA from "./components/ModalA";
+import ModalB from "./components/ModalB";
+
+function App() {
+  return (
+    <div className="App">
+      <Router>
+        <Container>
+          <Row>
+            <Col>
+              <Link to={{ pathname: "/modalA", state: { modal: true } }}>
+                <Button className="buttonA">Modal A</Button>
+              </Link>
+              <Link to={{ pathname: "/modalB", state: { modal: true } }}>
+                <Button className="buttonB">Modal B</Button>
+              </Link>
+            </Col>
+          </Row>
+        </Container>
+        <Switch>
+          <Route path="/" exact />
+          <Route path="/modalA" exact component={ModalA} />
+          <Route path="/modalB" exact component={ModalB} />
+        </Switch>
+      </Router>
+    </div>
+  );
+}
+
+export default App;
