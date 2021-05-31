@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/Modal.css";
 import { Table } from "react-bootstrap";
+import ModalC from "./ModalC";
 
 const ContactsList = ({ filteredContacts }) => {
+  const [openModalC, setOpenModalC] = useState(false);
+  const [selectedContact, setSelectedContact] = useState(null);
+
+  const openContactDetails = (contact) => {
+    setSelectedContact(contact);
+    setOpenModalC(true);
+  };
   return (
-    <Table>
+    <Table striped bordered>
       <thead>
         <tr>
           <th>Id</th>
@@ -16,7 +24,7 @@ const ContactsList = ({ filteredContacts }) => {
       <tbody>
         {!!filteredContacts &&
           filteredContacts.map((contact) => (
-            <tr key={contact.id}>
+            <tr key={contact.id} onClick={() => openContactDetails(contact)}>
               <td>{contact.id}</td>
               <td>{contact.first_name}</td>
               <td>{contact.last_name}</td>
@@ -24,6 +32,7 @@ const ContactsList = ({ filteredContacts }) => {
             </tr>
           ))}
       </tbody>
+      {openModalC && <ModalC contact={selectedContact} show={openModalC} />}
     </Table>
   );
 };
