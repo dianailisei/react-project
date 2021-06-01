@@ -5,16 +5,19 @@ import * as contactActions from "../redux/actions/contactActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 
-const SearchBar = ({ actions }) => {
+const SearchBar = ({ actions, queryParams }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    const timeOutId =
-      !!searchTerm &&
-      setTimeout(() => actions.loadContacts({ firstName: searchTerm }), 3000);
+    const timeOutId = setTimeout(() => searchContacts(), 500);
     return () => clearTimeout(timeOutId);
   }, [searchTerm]);
 
+  const searchContacts = () => {
+    !!searchTerm
+      ? actions.loadContacts({ ...queryParams, query: searchTerm })
+      : actions.loadContacts({ ...queryParams });
+  };
   return (
     <div className="input-group mb-3 searchbar">
       <input
@@ -30,7 +33,7 @@ const SearchBar = ({ actions }) => {
         <button
           className="btn btn-outline-secondary"
           type="button"
-          onClick={() => actions.loadContacts({ firstName: searchTerm })}
+          onClick={() => searchContacts()}
         >
           Search
         </button>

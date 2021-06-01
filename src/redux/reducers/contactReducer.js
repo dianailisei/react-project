@@ -1,5 +1,6 @@
 import * as actionTypes from "../actions/actionTypes";
 import initialState from "./initialState";
+import { LOCATION_CHANGE } from "react-router-redux";
 
 export default function contactReducer(state = initialState, action) {
   switch (action.type) {
@@ -20,6 +21,8 @@ export default function contactReducer(state = initialState, action) {
         filteredContacts: action.filteredContacts,
         showEvenContactIds: action.showEvenContactIds,
       };
+    case LOCATION_CHANGE:
+      return { ...initialState };
     default:
       return state;
   }

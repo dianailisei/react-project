@@ -14,20 +14,21 @@ const ModalB = ({ showEvenContactIds, contactIds, actions, location }) => {
   const { state = {} } = location;
   const { modal } = state;
 
-  const [page, setPage] = useState(1);
+  const queryParams = { page: 1, countryId: 226 };
+
   useEffect(() => {
-    contactIds !== undefined && actions.loadContacts({ page, countryId: 226 });
+    contactIds !== undefined && actions.loadContacts(queryParams);
   }, []);
 
   const handleScrollFrame = (values) => {
-    if (values.top == 1) {
-      setPage(page + 1);
-      actions.loadContacts({ page: page + 1 });
+    if (values.top === 1) {
+      queryParams.page += 1;
+      actions.loadContacts({ ...queryParams });
     }
   };
 
   return (
-    <Modal show={modal}>
+    <Modal show={modal} onHide={() => {}}>
       <Modal.Header>Modal B</Modal.Header>
       <Modal.Body>
         <div className="buttons-container">
@@ -41,7 +42,7 @@ const ModalB = ({ showEvenContactIds, contactIds, actions, location }) => {
             <Button>Close</Button>
           </Link>
         </div>
-        <SearchBar />
+        <SearchBar queryParams={queryParams} />
         <Scrollbars
           style={{ width: 450, height: 600 }}
           onScrollFrame={handleScrollFrame}
