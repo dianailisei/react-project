@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.buttons-container {
+  display: flex;
+  justify-content: space-evenly; }
+
+.buttonA {
+  margin-right: 8px; }
+
+.all-contacts-button.btn-primary {
+  background-color: #46139f;
+  border-color: #46139f; }
+  .all-contacts-button.btn-primary.btn-primary:hover, .all-contacts-button.btn-primary.btn-primary:active, .all-contacts-button.btn-primary.btn-primary:visited {
+    background-color: #46139f;
+    border-color: #46139f; }
+
+.us-contacts-button.btn-primary {
+  background-color: #ff7f50;
+  border-color: #ff7f50; }
+  .us-contacts-button.btn-primary.btn-primary:hover, .us-contacts-button.btn-primary.btn-primary:active, .us-contacts-button.btn-primary.btn-primary:visited {
+    background-color: #ff7f50;
+    border-color: #ff7f50; }
+
+.close-modal-button.btn-primary {
+  background-color: #ffffff;
+  border-color: #46139f; }
+  .close-modal-button.btn-primary.btn-primary:hover, .close-modal-button.btn-primary.btn-primary:active, .close-modal-button.btn-primary.btn-primary:visited {
+    background-color: #ffffff;
+    border-color: #46139f; }
+
+.footerCheckBox.form-check {
+  margin-right: auto; }
+
+.searchbar {
+  margin: 12px; }
+  .searchbar.input-group {
+    width: 94%; }

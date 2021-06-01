@@ -18,7 +18,6 @@ export function loadContacts(payload) {
 export function sortOnlyEvenContactIds(showEvenContactIds) {
   return function (dispatch, getState) {
     const currentState = getState();
-    debugger;
     const evenContactIds = showEvenContactIds
       ? currentState.contactsData.contactIds.filter((id) => id % 2 === 0)
       : currentState.contactsData.contactIds;

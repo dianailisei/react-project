@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../css/Modal.css";
+import "../css/style.css";
 import { Button, Modal, FormCheck } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -13,6 +13,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 const ModalA = ({ showEvenContactIds, contactIds, actions, location }) => {
   const { state = {} } = location;
   const { modal } = state;
+
   const [page, setPage] = useState(1);
   useEffect(() => {
     contactIds !== undefined && actions.loadContacts({ page });
@@ -29,20 +30,22 @@ const ModalA = ({ showEvenContactIds, contactIds, actions, location }) => {
     <Modal show={modal}>
       <Modal.Header>Modal A</Modal.Header>
       <Modal.Body>
-        <Scrollbars
-          style={{ width: 450, height: 600 }}
-          onScrollFrame={handleScrollFrame}
-        >
+        <div className="buttons-container">
           <Link to={{ pathname: "/modalA", state: { modal: true } }}>
-            <Button>All Contacts</Button>
+            <Button className="all-contacts-button">All Contacts</Button>
           </Link>
           <Link to={{ pathname: "/modalB", state: { modal: true } }}>
-            <Button>US Contacts</Button>
+            <Button className="us-contacts-button">US Contacts</Button>
           </Link>
           <Link to="/">
             <Button>Close</Button>
           </Link>
-          <SearchBar />
+        </div>
+        <SearchBar />
+        <Scrollbars
+          style={{ width: 450, height: 600 }}
+          onScrollFrame={handleScrollFrame}
+        >
           <ContactsList />
         </Scrollbars>
       </Modal.Body>

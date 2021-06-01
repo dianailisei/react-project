@@ -1,0 +1,66 @@
+//variables
+$buttonA-color: #46139f;
+$buttonB-color: #ff7f50;
+$buttonC-color: #ffffff;
+
+.App {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttons-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.buttonA {
+  margin-right: 8px;
+}
+.all-contacts-button {
+  &.btn-primary {
+    background-color: $buttonA-color;
+    border-color: $buttonA-color;
+    &.btn-primary:hover,
+    &.btn-primary:active,
+    &.btn-primary:visited {
+      background-color: $buttonA-color;
+      border-color: $buttonA-color;
+    }
+  }
+}
+.us-contacts-button {
+  &.btn-primary {
+    background-color: $buttonB-color;
+    border-color: $buttonB-color;
+    &.btn-primary:hover,
+    &.btn-primary:active,
+    &.btn-primary:visited {
+      background-color: $buttonB-color;
+      border-color: $buttonB-color;
+    }
+  }
+}
+.close-modal-button {
+  &.btn-primary {
+    background-color: $buttonC-color;
+    border-color: $buttonA-color;
+    &.btn-primary:hover,
+    &.btn-primary:active,
+    &.btn-primary:visited {
+      background-color: $buttonC-color;
+      border-color: $buttonA-color;
+    }
+  }
+}
+.footerCheckBox {
+  &.form-check {
+    margin-right: auto;
+  }
+}
+.searchbar {
+  margin: 12px;
+  &.input-group {
+    width: 94%;
+  }
+}

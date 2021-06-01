@@ -1,4 +1,4 @@
-import "./App.css";
+import "./css/style.css";
 import { Container, Button, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -13,10 +13,12 @@ const App = () => {
           <Row>
             <Col>
               <Link to={{ pathname: "/modalA", state: { modal: true } }}>
-                <Button className="buttonA">Modal A</Button>
+                <Button className="buttonA all-contacts-button">
+                  Button A
+                </Button>
               </Link>
               <Link to={{ pathname: "/modalB", state: { modal: true } }}>
-                <Button className="buttonB">Modal B</Button>
+                <Button className="us-contacts-button">Button B</Button>
               </Link>
             </Col>
           </Row>

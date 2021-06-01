@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/Modal.css";
+import "../css/style.css";
 import { Table } from "react-bootstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../css/Modal.css";
+import "../css/style.css";
 import { connect } from "react-redux";
 import * as contactActions from "../redux/actions/contactActions";
 import PropTypes from "prop-types";
@@ -16,7 +16,7 @@ const SearchBar = ({ actions }) => {
   }, [searchTerm]);
 
   return (
-    <div className="input-group mb-3">
+    <div className="input-group mb-3 searchbar">
       <input
         type="text"
         className="form-control"
@@ -40,21 +40,9 @@ const SearchBar = ({ actions }) => {
 };
 
 SearchBar.propTypes = {
-  //   contacts: PropTypes.object.isRequired,
-  //   contactIds: PropTypes.array.isRequired,
-  //   filteredContacts: PropTypes.array.isRequired,
-  // showEvenContactIds: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
-  return {
-    // contacts: state.response.contacts,
-    // filteredContacts: state.contactsData.filteredContacts,
-    // contactIds: state.contacts.contactIds,
-    // showEvenContactIds: state.contacts.showEvenContactIds,
-  };
-}
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(contactActions, dispatch),
