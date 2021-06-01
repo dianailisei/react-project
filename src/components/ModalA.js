@@ -7,46 +7,44 @@ import * as contactActions from "../redux/actions/contactActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import ContactsList from "./ContactsList";
+import SearchBar from "./SearchBar";
+import { Scrollbars } from "react-custom-scrollbars";
 
-const ModalA = ({ contacts, actions, location }) => {
+const ModalA = ({ showEvenContactIds, contactIds, actions, location }) => {
   const { state = {} } = location;
   const { modal } = state;
-  const [showEvenContactIds, setShowEvenContactIds] = useState(false);
-
+  const [page, setPage] = useState(1);
   useEffect(() => {
-    contacts.contacts_ids === undefined && actions.loadAllContacts({ page: 1 });
+    contactIds !== undefined && actions.loadContacts({ page });
   }, []);
 
-  const getFilteredContacts = () => {
-    const contactIds = showEvenContactIds
-      ? contacts.contacts_ids.filter((id) => id % 2 === 0)
-      : contacts.contacts_ids;
-    let filteredContacts = [];
-    if (contactIds !== undefined) {
-      for (const [key, value] of Object.entries(contacts.contacts)) {
-        if (contactIds.includes(parseInt(key))) {
-          filteredContacts.push(value);
-        }
-      }
+  const handleScrollFrame = (values) => {
+    if (values.top == 1) {
+      setPage(page + 1);
+      actions.loadContacts({ page: page + 1 });
     }
-
-    return filteredContacts;
   };
 
   return (
     <Modal show={modal}>
       <Modal.Header>Modal A</Modal.Header>
       <Modal.Body>
-        <Link to={{ pathname: "/modalA", state: { modal: true } }}>
-          <Button>All Contacts</Button>
-        </Link>
-        <Link to={{ pathname: "/modalB", state: { modal: true } }}>
-          <Button>US Contacts</Button>
-        </Link>
-        <Link to="/">
-          <Button>Close</Button>
-        </Link>
-        <ContactsList filteredContacts={getFilteredContacts()} />
+        <Scrollbars
+          style={{ width: 450, height: 600 }}
+          onScrollFrame={handleScrollFrame}
+        >
+          <Link to={{ pathname: "/modalA", state: { modal: true } }}>
+            <Button>All Contacts</Button>
+          </Link>
+          <Link to={{ pathname: "/modalB", state: { modal: true } }}>
+            <Button>US Contacts</Button>
+          </Link>
+          <Link to="/">
+            <Button>Close</Button>
+          </Link>
+          <SearchBar />
+          <ContactsList />
+        </Scrollbars>
       </Modal.Body>
       <Modal.Footer>
         <FormCheck
@@ -54,7 +52,9 @@ const ModalA = ({ contacts, actions, location }) => {
           label="Only even"
           className="footerCheckBox"
           value={showEvenContactIds}
-          onChange={(event) => setShowEvenContactIds(event.target.checked)}
+          onChange={(event) => {
+            actions.sortOnlyEvenContactIds(event.target.checked);
+          }}
         ></FormCheck>
       </Modal.Footer>
     </Modal>
@@ -62,13 +62,15 @@ const ModalA = ({ contacts, actions, location }) => {
 };
 
 ModalA.propTypes = {
-  contacts: PropTypes.object.isRequired,
+  contactIds: PropTypes.array.isRequired,
+  showEvenContactIds: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    contacts: state.contacts,
+    contactIds: state.contactsData.contactIds,
+    showEvenContactIds: state.contactsData.showEvenContactIds,
   };
 }
 function mapDispatchToProps(dispatch) {

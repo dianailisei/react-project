@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../css/Modal.css";
 import { Table } from "react-bootstrap";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import ModalC from "./ModalC";
 
 const ContactsList = ({ filteredContacts }) => {
@@ -11,8 +13,9 @@ const ContactsList = ({ filteredContacts }) => {
     setSelectedContact(contact);
     setOpenModalC(true);
   };
+
   return (
-    <Table striped bordered>
+    <Table striped style={{ width: 450 }}>
       <thead>
         <tr>
           <th>Id</th>
@@ -24,7 +27,7 @@ const ContactsList = ({ filteredContacts }) => {
       <tbody>
         {!!filteredContacts &&
           filteredContacts.map((contact) => (
-            <tr key={contact.id} onClick={() => openContactDetails(contact)}>
+            <tr key={Math.random()} onClick={() => openContactDetails(contact)}>
               <td>{contact.id}</td>
               <td>{contact.first_name}</td>
               <td>{contact.last_name}</td>
@@ -37,4 +40,14 @@ const ContactsList = ({ filteredContacts }) => {
   );
 };
 
-export default ContactsList;
+ContactsList.propTypes = {
+  filteredContacts: PropTypes.array.isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    filteredContacts: state.contactsData.filteredContacts,
+  };
+}
+
+export default connect(mapStateToProps)(ContactsList);

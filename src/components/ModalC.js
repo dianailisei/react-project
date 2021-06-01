@@ -3,7 +3,6 @@ import { Modal, Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const ModalC = ({ contact, show }) => {
-  debugger;
   return (
     <Modal show={show}>
       <Modal.Header>Modal C</Modal.Header>
