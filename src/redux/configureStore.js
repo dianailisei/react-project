@@ -4,13 +4,12 @@ import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
 import thunk from "redux-thunk";
 import { syncHistoryWithStore } from "react-router-redux";
 import { browserHistory } from "react-router";
-import initialState from "./reducers/initialState";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
+const initialReducerState = { contactsData: {} };
 export const store = createStore(
   rootReducer,
-  initialState,
+  initialReducerState,
   composeEnhancers(applyMiddleware(thunk, reduxImmutableStateInvariant()))
 );
 
