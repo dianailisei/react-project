@@ -15,21 +15,21 @@
 .all-contacts-button.btn-primary {
   background-color: #46139f;
   border-color: #46139f; }
-  .all-contacts-button.btn-primary.btn-primary:hover, .all-contacts-button.btn-primary.btn-primary:active, .all-contacts-button.btn-primary.btn-primary:visited {
+  .all-contacts-button.btn-primary.btn-primary:hover, .all-contacts-button.btn-primary.btn-primary:active, .all-contacts-button.btn-primary.btn-primary:visited, .all-contacts-button.btn-primary.btn-primary:focus {
     background-color: #46139f;
     border-color: #46139f; }
 
 .us-contacts-button.btn-primary {
   background-color: #ff7f50;
   border-color: #ff7f50; }
-  .us-contacts-button.btn-primary.btn-primary:hover, .us-contacts-button.btn-primary.btn-primary:active, .us-contacts-button.btn-primary.btn-primary:visited {
+  .us-contacts-button.btn-primary.btn-primary:hover, .us-contacts-button.btn-primary.btn-primary:active, .us-contacts-button.btn-primary.btn-primary:visited, .us-contacts-button.btn-primary.btn-primary:focus {
     background-color: #ff7f50;
     border-color: #ff7f50; }
 
 .close-modal-button.btn-primary {
   background-color: #ffffff;
   border-color: #46139f; }
-  .close-modal-button.btn-primary.btn-primary:hover, .close-modal-button.btn-primary.btn-primary:active, .close-modal-button.btn-primary.btn-primary:visited {
+  .close-modal-button.btn-primary.btn-primary:hover, .close-modal-button.btn-primary.btn-primary:active, .close-modal-button.btn-primary.btn-primary:visited, .close-modal-button.btn-primary.btn-primary:focus {
     background-color: #ffffff;
     border-color: #46139f; }
 

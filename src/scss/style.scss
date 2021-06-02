@@ -23,7 +23,8 @@ $buttonC-color: #ffffff;
     border-color: $buttonA-color;
     &.btn-primary:hover,
     &.btn-primary:active,
-    &.btn-primary:visited {
+    &.btn-primary:visited,
+    &.btn-primary:focus {
       background-color: $buttonA-color;
       border-color: $buttonA-color;
     }
@@ -35,7 +36,8 @@ $buttonC-color: #ffffff;
     border-color: $buttonB-color;
     &.btn-primary:hover,
     &.btn-primary:active,
-    &.btn-primary:visited {
+    &.btn-primary:visited,
+    &.btn-primary:focus {
       background-color: $buttonB-color;
       border-color: $buttonB-color;
     }
@@ -47,7 +49,8 @@ $buttonC-color: #ffffff;
     border-color: $buttonA-color;
     &.btn-primary:hover,
     &.btn-primary:active,
-    &.btn-primary:visited {
+    &.btn-primary:visited,
+    &.btn-primary:focus {
       background-color: $buttonC-color;
       border-color: $buttonA-color;
     }

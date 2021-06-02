@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../css/style.css";
 import { Button, Modal, FormCheck } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -10,20 +10,20 @@ import ContactsList from "./ContactsList";
 import SearchBar from "./SearchBar";
 import { Scrollbars } from "react-custom-scrollbars";
 
-const ModalB = ({ showEvenContactIds, contactIds, actions, location }) => {
+const ModalB = ({ showEvenContactIds, actions, location }) => {
   const { state = {} } = location;
   const { modal } = state;
 
   const queryParams = { page: 1, countryId: 226 };
 
   useEffect(() => {
-    contactIds !== undefined && actions.loadContacts(queryParams);
-  }, []);
+    actions.filterContacts(queryParams);
+  });
 
   const handleScrollFrame = (values) => {
     if (values.top === 1) {
       queryParams.page += 1;
-      actions.loadContacts({ ...queryParams });
+      actions.loadMoreContacts({ ...queryParams });
     }
   };
 
@@ -66,14 +66,12 @@ const ModalB = ({ showEvenContactIds, contactIds, actions, location }) => {
 };
 
 ModalB.propTypes = {
-  contactIds: PropTypes.array.isRequired,
   showEvenContactIds: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    contactIds: state.contactsData.contactIds,
     showEvenContactIds: state.contactsData.showEvenContactIds,
   };
 }
