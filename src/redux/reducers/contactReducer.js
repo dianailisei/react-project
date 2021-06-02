@@ -1,28 +1,34 @@
 import * as actionTypes from "../actions/actionTypes";
 import initialState from "./initialState";
-import { LOCATION_CHANGE } from "react-router-redux";
 
 export default function contactReducer(state = initialState, action) {
   switch (action.type) {
-    case actionTypes.LOAD_CONTACTS_SUCCESS:
-      let filteredContacts = [];
-      for (const [key, value] of Object.entries(action.response.contacts)) {
-        filteredContacts.push(value);
-      }
+    case actionTypes.LOAD_MORE_CONTACTS_SUCCESS:
       return {
         ...state,
         contacts: { ...state.contacts, ...action.response.contacts },
         contactIds: [...state.contactIds, ...action.response.contacts_ids],
-        filteredContacts: [...state.filteredContacts, ...filteredContacts],
+        filteredContacts: [
+          ...state.filteredContacts,
+          ...action.response.filteredContacts,
+        ],
       };
+
     case actionTypes.SORT_ONLY_EVEN_CONTACT_IDS:
       return {
         ...state,
         filteredContacts: action.filteredContacts,
         showEvenContactIds: action.showEvenContactIds,
       };
-    case LOCATION_CHANGE:
-      return { ...initialState };
+
+    case actionTypes.FILTER_CONTACTS_SUCCESS:
+      return {
+        ...state,
+        contacts: { ...action.response.contacts },
+        contactIds: [...action.response.contacts_ids],
+        filteredContacts: [...action.response.filteredContacts],
+      };
+
     default:
       return state;
   }

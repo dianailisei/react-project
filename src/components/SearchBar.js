@@ -6,18 +6,20 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 
 const SearchBar = ({ actions, queryParams }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState();
 
   useEffect(() => {
-    const timeOutId = setTimeout(() => searchContacts(), 500);
+    const timeOutId =
+      searchTerm !== undefined && setTimeout(() => searchContacts(), 500);
     return () => clearTimeout(timeOutId);
   }, [searchTerm]);
 
   const searchContacts = () => {
     !!searchTerm
-      ? actions.loadContacts({ ...queryParams, query: searchTerm })
-      : actions.loadContacts({ ...queryParams });
+      ? actions.filterContacts({ ...queryParams, query: searchTerm })
+      : actions.filterContacts({ ...queryParams });
   };
+
   return (
     <div className="input-group mb-3 searchbar">
       <input
